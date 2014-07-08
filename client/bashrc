@@ -1,0 +1,22 @@
+#!/bin/bash
+
+echo "starting condor"
+/sbin/service condor start
+
+#copy certificate so that we *own* it.
+cp /globus/usercert.pem /tmp/usercert.pem
+cp /globus/userkey.pem /tmp/userkey.pem
+export X509_USER_KEY=/tmp/userkey.pem
+export X509_USER_CERT=/tmp/usercert.pem
+
+#export GLOBUS_TCP_PORT_RANGE=20000,20005
+#export GLOBUS_TCP_SOURCE_RANGE=20000,20005
+
+#create proxy
+#grid-proxy-init -cert /tmp/usercert.pem -key /tmp/userkey.pem
+echo "initializing proxy"
+grid-proxy-init
+
+cd /host
+echo "welcome to OSG client!"
+
