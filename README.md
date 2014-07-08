@@ -2,20 +2,21 @@ Docker build files to create common OSG images.
 
 ## OSG Client
 
-You will need your X509 user certificate stored in ~/.globus (usercert.pem and uerkey.pem).
+You will need your X509 user certificate stored in ~/.globus (usercert.pem and userkey.pem).
 
-Following command starts up OSG-client mounting your current directory as /host inside the container. The container uses your host 
+Following command starts up OSG-client while mounting your current directory as /host inside the container. The container uses your host 
 network (--net=host) so that CE can contact you back straight to your container. You might need to setup the usual GLOBUS_TCP_PORT_RANGE.
 
-To start
+Add following to your .bashrc
 
 ```
-docker run --net=host -v ~/.globus:/globus -v `pwd`:/host -t -i soichih/osg-client /bin/bash
+alias osg="docker run --net=host -v ~/.globus:/globus -v `pwd`:/host -t -i soichih/osg-client /bin/bash"
 ```
 
-Once the container starts up, you can do the usual OSG stuff like...
+Then you can type "osg" to start up OSG client in any directory.
 
 ```
+$ osg
 starting condor
 Starting Condor daemons:                                   [  OK  ]
 initializing proxy
@@ -25,5 +26,4 @@ Your proxy is valid until: Wed Jul  9 11:51:45 2014
 welcome to OSG client!
 bash-4.1# globus-job-run ce.grid.iu.edu /usr/bin/whoami
 osg
-
 ```

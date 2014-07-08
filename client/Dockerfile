@@ -1,5 +1,5 @@
-#FROM centos:centos6
-FROM centos
+FROM centos:centos6
+#FROM centos
 
 MAINTAINER Soichi Hayashi <hayashis@iu.edu>
 
