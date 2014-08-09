@@ -12,10 +12,6 @@ RUN yum -y upgrade
 #RUN rpm -Uvh http://repo.grid.iu.edu/osg/3.1/osg-3.1-el6-release-latest.rpm
 
 #3.2
-RUN yum -y install dig
-RUN /usr/bin/dig repo.opensciencegrid.org
-
-
 RUN rpm -Uvh http://repo.opensciencegrid.org/osg/3.2/osg-3.2-el6-release-latest.rpm
 
 RUN yum -y install osg-ca-certs osg-client
@@ -27,16 +23,16 @@ RUN yum -y install condor
 # User needs to provide .globus directory containing usercert.pem and userkey.pem
 #VOLUME /root/.globus
 
-RUN /usr/sbin/fetch-crl
+RUN /usr/sbin/fetch-crl || exit 0
 #RUN /sbin/service fetch-crl-boot start
 #RUN /sbin/service fetch-crl-cron start
 #RUN /sbin/service condor start
 
 #RUN /sbin/chkconfig fetch-crl-boot on
 #RUN /sbin/chkconfig fetch-crl-cron on
-
-RUN /sbin/chkconfig condor on
+#RUN /sbin/chkconfig condor on
 
 ADD ./bashrc /.bashrc
 
+CMD bash
 #EXPOSE 20000:21000

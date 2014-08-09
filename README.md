@@ -10,7 +10,7 @@ network (--net=host) so that CE can contact you back straight to your container.
 Add following to your .bashrc
 
 ```
-alias osg="docker run -it --rm --net=host -v ~/.globus:/globus -v `pwd`:/host soichih/osg-client /bin/bash"
+alias osg="docker run -it --rm --net=host -v ~/.globus:/globus -v \`pwd\`:/host soichih/osg-client /bin/bash"
 ```
 
 Then you can type "osg" to start up OSG client in any directory.
