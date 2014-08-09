@@ -18,5 +18,6 @@ echo "initializing proxy"
 grid-proxy-init
 
 cd /host
-echo "welcome to OSG client!"
-
+echo "Welcome to OSG client!"
+echo "You can run jobs on OSG via command such as 'globus-job-run ce.grid.iu.edu /usr/bin/whoami'"
+echo "You might need to run fetch-crl to update CRL list"
